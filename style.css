@@ -33,11 +33,21 @@ h1, h2, h3, p {
 video
 *****************************/
 
+.video-cover {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #000000cb;
+  z-index: -3;
+}
+
 .video-bg {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: -1;
+  z-index: -4;
 }
 
 #player,
