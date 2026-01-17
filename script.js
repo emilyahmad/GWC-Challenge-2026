@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav");
   const sound = document.getElementById("clickSound");
-  sound.volume = 0.4;
+  sound.volume = 0.1;
 
   if (!nav || !sound) return;
 

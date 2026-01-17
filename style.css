@@ -1,5 +1,7 @@
 body {
     background: #000000;
+    cursor: url("design/cursor.png") 16 16, auto;
+    overflow: hidden;
 }
 
 h1, h2, h3, p {
@@ -55,7 +57,7 @@ video
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
+  width: 250vw;
   height: 100vh;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -219,7 +221,7 @@ nav bar
 .nav-button2:hover,
 .input-textbox:hover,
 .nav h2:hover {
-  cursor: pointer;
+  cursor: url("design/pointer.png") 16 16, auto;
   --poly-color: #1d1f1f;
   --poly-border-color: #4a4f4f;
   --poly-font-color: rgba(234, 244, 244, 0.6);
