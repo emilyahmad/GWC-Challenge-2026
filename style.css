@@ -21,6 +21,38 @@ h1, h2, h3, p {
     pointer-events: none;
 }
 
+.video-bg{
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.video-bg iframe{
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  transform: scale(1.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*****************************
 nav bar
 *****************************/
@@ -156,7 +188,7 @@ nav bar
   cursor: pointer;
   --poly-color: #1d1f1f;
   --poly-border-color: #4a4f4f;
-  --poly-font-color: rgba(206, 215, 215, 0.6);
+  --poly-font-color: rgba(234, 244, 244, 0.6);
 }
 
 .nav h3 {
@@ -176,3 +208,14 @@ nav bar
     left: 10%;
     position: fixed;
 }
+
+.input-textbox {
+  background: var(--poly-color);
+  border: 1px solid var(--poly-border-color);
+
+  min-height: .5rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
