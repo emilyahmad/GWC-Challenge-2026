@@ -1,5 +1,5 @@
 body {
-    background: black;
+    background: #000000;
 }
 
 h1, h2, h3, p {
@@ -23,11 +23,38 @@ h1, h2, h3, p {
 /*****************************
 nav bar
 *****************************/
+:root {
+  --poly-width: 10rem;
+  --poly-height: 3.75rem;
+  /*
+  --poly-color: 3.75rem;
+  --poly-font-color: 3.75rem;
+  */
+}
 
-.nav{
+.nav {
+    z-index: 0;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: .5rem;
+
+  position: absolute;
+  top: 91%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* fake bottom border */
+.nav::after {
+  content: "";
+  position: absolute;
+  bottom: -7.5%;
+  left: 50%;
+  transform: translateX(-50.5%);
+
+  width: 94%;
+  height: 3px;
+  background: #323636;
 }
 
 /*****************************
@@ -35,11 +62,11 @@ first polygon
 *****************************/
 
 .nav-button1 {
-  width: 15rem;
-  height: 5rem;
+  width: var(--poly-width);
+  height: var(--poly-height);
 
   --cut: 6rem;
-  --border: 3px;
+  --border: 1px;
 
   position: relative;
 }
@@ -48,7 +75,7 @@ first polygon
   content: "";
   position: absolute;
   inset: 0;
-  background: #6f7476;
+  background: #676D6D;
 
   clip-path: polygon(
     var(--cut) 0%,
@@ -62,7 +89,7 @@ first polygon
 .nav-button__inner1{
   position: absolute;
   inset: var(--border);
-  background: #2f3333;
+  background: #323636;
 
   clip-path: polygon(
     calc(var(--cut) - var(--border)) 0%,
@@ -80,34 +107,27 @@ first polygon
 regular
 *****************************/
 .nav-button {
-  width: 15rem;
-  height: 5rem;
+    width: var(--poly-width);
+    height: var(--poly-height);
 
   --cut: 6rem;
   --border: 3px;
 
   position: relative;
+  border: solid #676D6D 1px;
 }
 
 .nav-button::before{
   content: "";
   position: absolute;
   inset: 0;
-  background: #6f7476;
+  background: #323636;
 }
 
 .nav-button__regular{
   position: absolute;
   inset: var(--border);
-  background: #2f3333;
-
-  clip-path: polygon(
-    calc(var(--cut) - var(--border)) 0%,
-    100% 0%,
-    100% 100%,
-    0% 100%,
-    0% 45%
-  );
+  background: #323636;
 
   display: grid;
   place-items: center;
@@ -118,11 +138,11 @@ last polygon
 *****************************/
 
 .nav-button2{
-  width: 15rem;
-  height: 5rem;
+  width: var(--poly-width);
+  height: var(--poly-height);
 
   --cut: 3.5rem;
-  --border: 3px;
+  --border: 1px;
 
   position: relative;
 }
@@ -131,7 +151,7 @@ last polygon
   content:"";
   position:absolute;
   inset:0;
-  background:#6f7476;
+  background:#676D6D;
 
   clip-path: polygon(
     0% 0%,
@@ -145,7 +165,7 @@ last polygon
 .nav-button__inner2{
   position:absolute;
   inset: var(--border);
-  background:#2f3333;
+  background:#323636;
 
   clip-path: polygon(
     0% 0%,
@@ -159,11 +179,16 @@ last polygon
   place-items:center;
 }
 
+/*****************************
+all nav
+*****************************/
+
+.nav-button, 
 
 .nav h3{
-  margin: 0;
+    margin: 0;
   font-family: "Gemunu Libre", sans-serif;
-  font-size: 2rem;
+  font-size: 1.25rem;
   letter-spacing: 0.02em;
-  color: #9ea3a3;
+  color: rgba(232, 239, 239, 0.6);
 }
