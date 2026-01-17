@@ -14,7 +14,7 @@
 <body>
     <!-- Design overlays -->
     <img id="scanlines" src="design/scanlines.png">
-    <img id="scanlines" src="design/bars.png">
+    <img id="bars" src="design/bars.png">
 
     <div class="video-bg">
         <div id="player"></div>
@@ -48,6 +48,36 @@
     <script>
         console.log("API loaded?", typeof YT);
     </script>
+
+    <div id="clock">Sat 1/17/2026 3:51:30</div>
+
+    <script>
+    const el = document.getElementById("clock");
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function render(d) {
+        const mm = d.getMonth() + 1;
+        const dd = d.getDate();
+        const yyyy = d.getFullYear();
+        const HH = pad(d.getHours());
+        const MM = pad(d.getMinutes());
+        const SS = pad(d.getSeconds());
+        el.textContent = `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`;
+    }
+
+    function tickAligned() {
+        const now = new Date();
+        render(now);
+
+        // schedule next tick exactly after the next second boundary
+        const msUntilNextSecond = 1000 - now.getMilliseconds();
+        setTimeout(tickAligned, msUntilNextSecond);
+    }
+
+    tickAligned();
+    </script>
+
 
     <section class="dashboard">
         <h2>Your Dashboard</h2>

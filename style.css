@@ -3,7 +3,7 @@ body {
 }
 
 h1, h2, h3, p {
-    color: white;
+    color: var(--poly-font-color);;
     font-family: "Gemunu Libre", sans-serif;
     font-optical-sizing: auto;
     font-weight: 325;
@@ -19,6 +19,14 @@ h1, h2, h3, p {
     top: 0;
     left: 0;
     pointer-events: none;
+}
+
+#bars {
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    position: fixed;
 }
 
 /*****************************
@@ -46,14 +54,25 @@ video
 #player iframe {
   width: max(100vw, 177.78vh);
   height: max(100vh, 56.25vw);
+  opacity: 15;
 }
 
-.video-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  pointer-events: none;
+.video-bg::after { background: rgba(0,0,0,0.6); }
+
+/*****************************
+clock
+*****************************/
+#clock {
+  color: var(--poly-font-color);;
+  font-family: "Gemunu Libre", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 325;
+  font-style: normal;
+  font-size: 1.25rem;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(87%, 155%);
 }
 
 /*****************************
@@ -73,7 +92,7 @@ nav bar
   align-items: center;
   gap: .4rem;
   position: absolute;
-  top: 89%;
+  top: 87.25%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -83,8 +102,8 @@ nav bar
   position: absolute;
   bottom: 7%;
   left: 50%;
-  transform: translateX(-50.5%);
-  width: 94%;
+  transform: translateX(-50%);
+  width: 92%;
   height: 1.5px;
   background: var(--poly-border-color);
 }
@@ -187,7 +206,9 @@ nav bar
 
 .nav-button:hover,
 .nav-button1:hover,
-.nav-button2:hover {
+.nav-button2:hover,
+.input-textbox:hover,
+.nav h2:hover {
   cursor: pointer;
   --poly-color: #1d1f1f;
   --poly-border-color: #4a4f4f;
@@ -206,7 +227,7 @@ nav bar
     /*
     border: solid white 2px;
     */
-    width: 40%;
+    width: 30%;
     top: 25%;
     left: 10%;
     position: fixed;
