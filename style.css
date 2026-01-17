@@ -30,18 +30,13 @@ nav bar
   gap: 1.25rem;
 }
 
-.nav-arrow{
-  background: transparent;
-  border: none;
-  color: #cfcfcf;
-  font-size: 2.2rem;
-  cursor: pointer;
-  line-height: 1;
-}
+/*****************************
+first polygon
+*****************************/
 
-.nav-button{
-  width: 62rem;
-  height: 12rem;
+.nav-button1 {
+  width: 15rem;
+  height: 5rem;
 
   --cut: 6rem;
   --border: 3px;
@@ -49,7 +44,7 @@ nav bar
   position: relative;
 }
 
-.nav-button::before{
+.nav-button1::before{
   content: "";
   position: absolute;
   inset: 0;
@@ -64,7 +59,7 @@ nav bar
   );
 }
 
-.nav-button__inner{
+.nav-button__inner1{
   position: absolute;
   inset: var(--border);
   background: #2f3333;
@@ -81,11 +76,94 @@ nav bar
   place-items: center;
 }
 
-.nav-button h3{
+/*****************************
+regular
+*****************************/
+.nav-button {
+  width: 15rem;
+  height: 5rem;
+
+  --cut: 6rem;
+  --border: 3px;
+
+  position: relative;
+}
+
+.nav-button::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #6f7476;
+}
+
+.nav-button__regular{
+  position: absolute;
+  inset: var(--border);
+  background: #2f3333;
+
+  clip-path: polygon(
+    calc(var(--cut) - var(--border)) 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    0% 45%
+  );
+
+  display: grid;
+  place-items: center;
+}
+
+/*****************************
+last polygon
+*****************************/
+
+.nav-button2{
+  width: 15rem;
+  height: 5rem;
+
+  --cut: 3.5rem;
+  --border: 3px;
+
+  position: relative;
+}
+
+.nav-button2::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#6f7476;
+
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--cut)) 0%,
+    100% 35%,
+    100% 100%,
+    0% 100%
+  );
+}
+
+.nav-button__inner2{
+  position:absolute;
+  inset: var(--border);
+  background:#2f3333;
+
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - (var(--cut) - var(--border))) 0%,
+    100% 35%,
+    100% 100%,
+    0% 100%
+  );
+
+  display:grid;
+  place-items:center;
+}
+
+
+.nav h3{
   margin: 0;
   font-family: "Gemunu Libre", sans-serif;
-  font-weight: 300;
-  font-size: 5.5rem;
+  font-size: 2rem;
   letter-spacing: 0.02em;
   color: #9ea3a3;
 }
