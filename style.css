@@ -13,11 +13,12 @@ h1, h2, h3, p {
 #scanlines {
     z-index: 2;
     width: 100vw;
-    height: 100vwh;
+    height: 100vh;
     object-fit: cover;
     position: fixed;
     top: 0;
     left: 0;
+    pointer-events: none;
 }
 
 /*****************************
@@ -25,58 +26,47 @@ nav bar
 *****************************/
 :root {
   --poly-width: 10rem;
-  --poly-height: 3.75rem;
-  /*
-  --poly-color: 3.75rem;
-  --poly-font-color: 3.75rem;
-  */
+  --poly-height: 3rem;
+  --poly-color: #323636;
+  --poly-border-color: #676D6D;
+  --poly-font-color: rgba(232, 239, 239, 0.6);
 }
 
 .nav {
-    z-index: 0;
+  z-index: 0;
   display: flex;
   align-items: center;
-  gap: .5rem;
-
+  gap: .4rem;
   position: absolute;
-  top: 91%;
+  top: 89%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-/* fake bottom border */
 .nav::after {
   content: "";
   position: absolute;
-  bottom: -7.5%;
+  bottom: 7%;
   left: 50%;
   transform: translateX(-50.5%);
-
   width: 94%;
-  height: 3px;
-  background: #323636;
+  height: 1.5px;
+  background: var(--poly-border-color);
 }
-
-/*****************************
-first polygon
-*****************************/
 
 .nav-button1 {
   width: var(--poly-width);
   height: var(--poly-height);
-
   --cut: 6rem;
   --border: 1px;
-
   position: relative;
 }
 
-.nav-button1::before{
+.nav-button1::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #676D6D;
-
+  background: var(--poly-border-color);
   clip-path: polygon(
     var(--cut) 0%,
     100% 0%,
@@ -86,11 +76,10 @@ first polygon
   );
 }
 
-.nav-button__inner1{
+.nav-button__inner1 {
   position: absolute;
   inset: var(--border);
-  background: #323636;
-
+  background: var(--poly-color);
   clip-path: polygon(
     calc(var(--cut) - var(--border)) 0%,
     100% 0%,
@@ -98,61 +87,45 @@ first polygon
     0% 100%,
     0% 45%
   );
-
   display: grid;
   place-items: center;
 }
 
-/*****************************
-regular
-*****************************/
 .nav-button {
-    width: var(--poly-width);
-    height: var(--poly-height);
-
-  --cut: 6rem;
-  --border: 3px;
-
+  width: var(--poly-width);
+  height: var(--poly-height);
+  --border: 1px;
   position: relative;
-  border: solid #676D6D 1px;
 }
 
-.nav-button::before{
+.nav-button::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #323636;
+  background: var(--poly-border-color);
 }
 
-.nav-button__regular{
+.nav-button__regular {
   position: absolute;
   inset: var(--border);
-  background: #323636;
-
+  background: var(--poly-color);
   display: grid;
   place-items: center;
 }
 
-/*****************************
-last polygon
-*****************************/
-
-.nav-button2{
+.nav-button2 {
   width: var(--poly-width);
   height: var(--poly-height);
-
   --cut: 3.5rem;
   --border: 1px;
-
   position: relative;
 }
 
-.nav-button2::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:#676D6D;
-
+.nav-button2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--poly-border-color);
   clip-path: polygon(
     0% 0%,
     calc(100% - var(--cut)) 0%,
@@ -162,11 +135,10 @@ last polygon
   );
 }
 
-.nav-button__inner2{
-  position:absolute;
+.nav-button__inner2 {
+  position: absolute;
   inset: var(--border);
-  background:#323636;
-
+  background: var(--poly-color);
   clip-path: polygon(
     0% 0%,
     calc(100% - (var(--cut) - var(--border))) 0%,
@@ -174,21 +146,23 @@ last polygon
     100% 100%,
     0% 100%
   );
-
-  display:grid;
-  place-items:center;
+  display: grid;
+  place-items: center;
 }
 
-/*****************************
-all nav
-*****************************/
+.nav-button:hover,
+.nav-button1:hover,
+.nav-button2:hover {
+  cursor: pointer;
+  --poly-color: #1d1f1f;
+  --poly-border-color: #4a4f4f;
+  --poly-font-color: rgba(206, 215, 215, 0.6);
+}
 
-.nav-button, 
-
-.nav h3{
-    margin: 0;
+.nav h3 {
+  margin: 0;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 1.25rem;
   letter-spacing: 0.02em;
-  color: rgba(232, 239, 239, 0.6);
+  color: var(--poly-font-color);
 }
