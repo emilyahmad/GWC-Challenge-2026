@@ -21,37 +21,40 @@ h1, h2, h3, p {
     pointer-events: none;
 }
 
-.video-bg{
+/*****************************
+video
+*****************************/
+
+.video-bg {
   position: fixed;
   inset: 0;
-  z-index: 2;
   overflow: hidden;
+  z-index: -1;
 }
 
-.video-bg iframe{
+#player,
+#player iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 100vw;
   height: 100vh;
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  transform: scale(1.2);
 }
 
+#player iframe {
+  width: max(100vw, 177.78vh);
+  height: max(100vh, 56.25vw);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
 
 /*****************************
 nav bar
