@@ -271,3 +271,71 @@ nav bar
   object-fit: cover;
   border-radius: 50%;
 }
+
+.profile-ring{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  width: 20rem;
+  height: 20rem;
+  z-index: 1;
+}
+
+.profile-ring > img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.85;
+  display: block;
+}
+
+.profile-ring::before{
+  content:"";
+  position:absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 3px solid rgba(230, 240, 240, 0.25);
+  pointer-events: none;
+}
+
+.profile-ring::after{
+  content:"";
+  position:absolute;
+  inset: -26px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(230,240,240,0.0) 0deg 17deg,
+      rgba(230,240,240,0.9) 18deg 112deg,
+      rgba(230,240,240,0.0) 112deg 150deg,
+      rgba(230,240,240,0.9) 151deg 195deg,
+      rgba(230,240,240,0.0) 196deg 210deg,
+      rgba(230,240,240,0.9) 211deg 230deg,
+      rgba(230,240,240,0.0) 231deg 259deg,
+      rgba(230,240,240,0.9) 260deg 285deg,
+      rgba(230,240,240,0.0) 286deg 301deg,
+      rgba(230,240,240,0.9) 302deg 260deg
+    );
+
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    #000 calc(100% - 6px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    #000 calc(100% - 6px)
+  );
+
+  animation: ringSpin 15s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(200,255,255,0.25));
+}
+
+@keyframes ringSpin{
+  to { transform: rotate(360deg); }
+}
