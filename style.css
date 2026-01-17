@@ -166,3 +166,13 @@ nav bar
   letter-spacing: 0.02em;
   color: var(--poly-font-color);
 }
+
+.dashboard {
+    /*
+    border: solid white 2px;
+    */
+    width: 40%;
+    top: 25%;
+    left: 10%;
+    position: fixed;
+}
