@@ -1,6 +1,5 @@
 body {
     background: #000000;
-    cursor: url("design/cursor.png") 16 16, auto;
     overflow: hidden;
 }
 
@@ -221,7 +220,7 @@ nav bar
 .nav-button2:hover,
 .input-textbox:hover,
 .nav h2:hover {
-  cursor: url("design/pointer.png") 16 16, auto;
+  cursor: pointer;
   --poly-color: #1d1f1f;
   --poly-border-color: #4a4f4f;
   --poly-font-color: rgba(234, 244, 244, 0.6);
@@ -245,7 +244,7 @@ nav bar
     position: fixed;
 }
 
-.input-textbox {
+#comments {
   background: var(--poly-color);
   border: 1px solid var(--poly-border-color);
 
@@ -253,4 +252,22 @@ nav bar
   padding-left: 1rem;
   display: flex;
   align-items: center;
+}
+
+#comments {
+  color: var(--poly-font-color);
+  font-family: "Gemunu Libre", sans-serif;
+  font-size: 1rem;
+}
+
+#pfp {
+  z-index: 0;
+  opacity: .85;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 50%;
 }
