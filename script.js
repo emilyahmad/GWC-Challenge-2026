@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav");
   const sound = document.getElementById("clickSound");
-  sound.volume = 0.1;
-
   if (!nav || !sound) return;
+  sound.volume = 0.1;
 
   nav.addEventListener("click", (e) => {
     const clickedInsideNav = e.target.closest(".nav");
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const h2Text = h2.textContent.trim();
   const h3Text = h3.textContent.trim();
 
-  // Clear text so we can type it out
   h2.textContent = "";
   h3.textContent = "";
   h2.style.visibility = "visible";
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startSequence() {
-    // Start audio immediately
     audio.currentTime = 0;
     audio.play().catch(() => {
       document.addEventListener("click", () => {
@@ -79,4 +76,87 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   startSequence();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById("panel");
+  const title = document.getElementById("panelTitle");
+  const text = document.getElementById("panelText");
+
+  const mapping = {
+    Detect: {
+      title: "Detect",
+      text: "Upload an image to start detection."
+    },
+    Hash: {
+      title: "Hash",
+      text: "Paste text and generate a secure hash."
+    },
+    Predict: {
+      title: "Predict",
+      text: "Select a model and run a prediction."
+    },
+    History: {
+      title: "History",
+      text: "View recent analyses and logs."
+    }
+  };
+
+  document.querySelector(".nav")?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".nav-button, .nav-button1, .nav-button2");
+    if (!btn) return;
+
+    const label = btn.querySelector("h3")?.textContent?.trim();
+    if (!label) return;
+
+    const data = mapping[label] || { title: label, text: "Loading..." };
+
+    document.body.classList.add("panel-open");
+
+    title.textContent = data.title;
+    text.textContent = data.text;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const back = document.getElementById("navBack");
+  const sound = document.getElementById("clickSound");
+
+  if (!back || !sound) return;
+
+  sound.volume = 0.1;
+
+  back.addEventListener("click", (e) => {
+    // Always stop it from bubbling up to .nav click handlers
+    e.stopPropagation();
+
+    // Only do anything when panel is open
+    if (!document.body.classList.contains("panel-open")) return;
+
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+
+    document.body.classList.remove("panel-open");
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".nav");
+  const next = document.getElementById("navNext");
+
+  if (!nav || !next) return;
+
+  const buttons = Array.from(
+    nav.querySelectorAll(".nav-button1, .nav-button, .nav-button2")
+  );
+
+  let index = 0;
+
+  next.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    index = (index + 1) % buttons.length;
+    buttons[index].click();
+  });
 });

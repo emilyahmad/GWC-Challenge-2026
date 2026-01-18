@@ -27,30 +27,52 @@
     </div>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        let player;
-        window.onYouTubeIframeAPIReady = function () {
-        player = new YT.Player("player", {
-            videoId: "ibNrPjETR_k",
-            playerVars: {
-            autoplay: 1,
-            mute: 1,
-            controls: 0,
-            loop: 1,
-            playlist: "ibNrPjETR_k",
-            playsinline: 1,
-            start: 200,
-            rel: 0,
-            modestbranding: 1
-            },
-            events: {
-            onReady: function (event) {
-                event.target.mute();
-                event.target.playVideo();
-            }
-            }
-        });
-        };
-    </script>
+  let player;
+
+  // video length in seconds
+  const VIDEO_LENGTH = 14445;
+
+  function randomStart() {
+    // avoid the very end so it doesn't instantly loop
+    const bufferFromEnd = 10; // seconds
+    return Math.floor(Math.random() * Math.max(1, VIDEO_LENGTH - bufferFromEnd));
+  }
+
+  window.onYouTubeIframeAPIReady = function () {
+    const startAt = randomStart();
+
+    player = new YT.Player("player", {
+      videoId: "ibNrPjETR_k",
+      playerVars: {
+        autoplay: 1,
+        mute: 1,
+        controls: 0,
+        playsinline: 1,
+        rel: 0,
+        modestbranding: 1,
+
+        // looping background video:
+        loop: 1,
+        playlist: "ibNrPjETR_k",
+
+        // don't hardcode a fixed start here
+        start: 0
+      },
+      events: {
+        onReady: function (event) {
+          event.target.mute();
+
+          // jump to a random time on every refresh
+          event.target.seekTo(startAt, true);
+
+          event.target.playVideo();
+        }
+      }
+    });
+  };
+</script>
+
+
     <script>
         console.log("API loaded?", typeof YT);
     </script>
@@ -101,14 +123,17 @@
             <div class="ring3"></div>
             <img id="pfp" src="https://www.rollingstone.com/wp-content/uploads/2025/03/Tul8te-5a.jpg?w=1200&h=800&crop=1">
         </div>
+    </section>
 
-
-
+    <section class="panel" id="panel">
+        <h2 id="panelTitle">Detect</h2>
+        <h3 id="panelText">Upload an image to start detection.</h3>
     </section>
 
 
+
     <section class="nav">
-        <h2>&lt;&lt;</h2>
+        <h2 id="navBack">&lt;&lt;</h2>
         <div class="nav-button1">
             <div class="nav-button__inner1">
                 <h3>Detect</h3>
@@ -129,7 +154,7 @@
                 <h3>History</h3>
             </div>
         </div>
-        <h2>&gt;&gt;</h2>
+        <h2 id="navNext">&gt;&gt;</h2>
     </section>
     <script src="script.js"></script>
 </body>
