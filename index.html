@@ -6,6 +6,7 @@
     <title>Security Dashboard</title>
     <!-- Styling -->
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/design/lock-icon.ico">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap');
     </style>
@@ -13,6 +14,7 @@
 </head>
 <body>
      <audio id="clickSound" src="audio/click-sound-effect.mp4" preload="auto"></audio>
+     <audio id="loadingAudio" src="audio/text-loading.mp4" preload="auto"></audio>
 
     <!-- Design overlays -->
     <img id="scanlines" src="design/scanlines.png">
@@ -53,33 +55,32 @@
         console.log("API loaded?", typeof YT);
     </script>
 
-    <div id="clock">Sat 1/17/2026 3:51:30</div>
-
+        <div id="clock">Sat 1/17/2026 3:51:30</div>
+    
     <script>
-    const el = document.getElementById("clock");
+        const el = document.getElementById("clock");
+        function pad(n) { return String(n).padStart(2, "0"); }
 
-    function pad(n) { return String(n).padStart(2, "0"); }
+        function render(d) {
+            const mm = d.getMonth() + 1;
+            const dd = d.getDate();
+            const yyyy = d.getFullYear();
+            const HH = pad(d.getHours());
+            const MM = pad(d.getMinutes());
+            const SS = pad(d.getSeconds());
+            el.textContent = `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`;
+        }
 
-    function render(d) {
-        const mm = d.getMonth() + 1;
-        const dd = d.getDate();
-        const yyyy = d.getFullYear();
-        const HH = pad(d.getHours());
-        const MM = pad(d.getMinutes());
-        const SS = pad(d.getSeconds());
-        el.textContent = `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`;
-    }
+        function tickAligned() {
+            const now = new Date();
+            render(now);
 
-    function tickAligned() {
-        const now = new Date();
-        render(now);
+            // schedule next tick exactly after the next second boundary
+            const msUntilNextSecond = 1000 - now.getMilliseconds();
+            setTimeout(tickAligned, msUntilNextSecond);
+        }
 
-        // schedule next tick exactly after the next second boundary
-        const msUntilNextSecond = 1000 - now.getMilliseconds();
-        setTimeout(tickAligned, msUntilNextSecond);
-    }
-
-    tickAligned();
+        tickAligned();
     </script>
 
     <section class="dashboard">

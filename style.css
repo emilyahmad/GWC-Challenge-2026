@@ -235,14 +235,17 @@ nav bar
 }
 
 .dashboard {
-    /*
-    border: solid white 2px;
-    */
     width: 30%;
     top: 25%;
     left: 10%;
     position: fixed;
 }
+
+.dashboard h2,
+.dashboard h3 {
+  visibility: hidden;
+}
+
 
 #comments {
   background: var(--poly-color);
@@ -339,3 +342,4 @@ nav bar
 @keyframes ringSpin{
   to { transform: rotate(360deg); }
 }
+
