@@ -160,3 +160,26 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons[index].click();
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const back = document.getElementById("navBack");
+  const next = document.getElementById("navNext");
+
+  if (!back || !next) return;
+
+  document.addEventListener("keydown", (e) => {
+    // Don't hijack arrow keys while typing in inputs/textareas
+    const tag = document.activeElement?.tagName?.toLowerCase();
+    if (tag === "input" || tag === "textarea") return;
+
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      back.click();   // same as clicking <<
+    }
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      next.click();   // same as clicking >>
+    }
+  });
+});
